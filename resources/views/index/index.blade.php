@@ -47,8 +47,9 @@
     <section id="gerechten" class="projects-section bg-light">
         <div class="container">
             <button class="btn-primary nieuwGerecht">Nieuw gerecht</button>
+            <?php $positie = 'links'?>
             @foreach($gerechten as $gerecht)
-                @if($gerecht->GerechtID % 2 == 0)
+                @if($positie =='links')
                 <div class="row justify-content-center no-gutters mb-5 mb-lg-0" style="margin-bottom: 1rem;">
                     <div class="col-lg-6">
                         <img class="img-fluid" src="img/gerechten/{{$gerecht->GerechtID}}.jpg" style="width:100%; height: 100%; " alt="">
@@ -61,12 +62,15 @@
                                     <h8 class="text-white">€{{$gerecht->Prijs}}</h8>
                                     <p class="mb-0 text-white-50">@if($taal=='NL')Allergenen: @else Allergenes: @endif {{$gerecht->allergenen}}</p>
                                     <hr class="d-none d-lg-block mb-0 ml-0">
+                                    <button type="button" class="btn btn-primary wijzigen" value="{{$gerecht->GerechtID}}">Wijzigen</button>
+                                    <button type="button" class="btn btn-danger verwijderen" value="{{$gerecht->GerechtID}}">Verwijderen</button>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                @else
+                    <?php $positie = 'rechts'?>
+                @elseif($positie =='rechts')
                     <div class="row justify-content-center no-gutters" style="margin-bottom: 1rem;">
                         <div class="col-lg-6">
                             <img class="img-fluid" src="img/gerechten/{{$gerecht->GerechtID}}.jpg" style="width:100%; height: 100% " alt="">
@@ -79,11 +83,14 @@
                                         <h8 class="text-white">€{{$gerecht->Prijs}}</h8>
                                         <p class="mb-0 text-white-50">@if($taal=='NL')Allergenen: @else Allergenes: @endif {{$gerecht->allergenen}}</p>
                                         <hr class="d-none d-lg-block mb-0 mr-0">
+                                        <button type="button" class="btn btn-primary wijzigen" value="{{$gerecht->GerechtID}}">Wijzigen</button>
+                                        <button type="button" class="btn btn-danger verwijderen" value="{{$gerecht->GerechtID}}">Verwijderen</button>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
+                    <?php $positie = 'links'?>
                 @endif
             @endforeach
         </div>
@@ -92,7 +99,7 @@
     <section id="drankjes" class="projects-section bg-light">
         <div class="container">
             @foreach($drankjes as $drankje)
-                @if($drankje->DrankID % 2 == 0)
+                @if($positie == 'links')
                     <div class="row justify-content-center no-gutters mb-5 mb-lg-0" style="margin-bottom: 1rem;">
                         <div class="col-lg-6">
                             <img class="img-fluid" src="img/Drankjes/{{$drankje->DrankID}}{{$drankje->Extensie}}" style="width:100%; height: 100%; " alt="">
@@ -110,7 +117,8 @@
                             </div>
                         </div>
                     </div>
-                @else
+                    <?php $positie = 'rechts'?>
+                @elseif($positie =='rechts')
                     <div class="row justify-content-center no-gutters" style="margin-bottom: 1rem;">
                         <div class="col-lg-6">
                             <img class="img-fluid" src="img/Drankjes/{{$drankje->DrankID}}{{$drankje->Extensie}}" style="width:100%; height: 100% " alt="">
@@ -128,6 +136,7 @@
                             </div>
                         </div>
                     </div>
+                    <?php $positie = 'links'?>
                 @endif
             @endforeach
 

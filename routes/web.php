@@ -27,7 +27,14 @@ Route::prefix('login')->group(function (){
 });
 
 Route::prefix('registreer')->group(function (){
-    Route::post('/opslaan','Auth\RegisterController@opslaan');
+    Route::post('/opslaan','Auth\RegisterController@opslaan')->name('opslaan');
+});
+
+Route::prefix('gerecht')->group(function (){
+    Route::post('/toevoegen','GerechtenController@toevoegen')->name('toevoegen');
+    Route::post('/verwijderen', 'GerechtenController@verwijderen')->name('verwijderen');
+    Route::post('/wijzigen', 'GerechtenController@wijzigen')->name('wijzigen');
+    Route::post('/wijzigen/modal','GerechtenController@wijzigenModal');
 });
 
 
